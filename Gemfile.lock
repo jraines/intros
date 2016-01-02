@@ -73,8 +73,13 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faker (1.6.1)
+      i18n (~> 0.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.4.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -93,6 +98,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
@@ -208,8 +214,11 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise (~> 3.5.3)
   factory_girl_rails
+  faker
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri (~> 1.6)
   pry-rails
   rails (= 4.2.5)
   rspec-rails (~> 3.0)
