@@ -1,0 +1,6 @@
+-if flash[:notice] or flash[:alert]
+  .flash-notices
+    - if flash[:notice]
+      .flash-notice = flash[:notice]
+    - if flash[:alert]
+      .flash-alert = flash[:alert]

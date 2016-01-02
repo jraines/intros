@@ -1,5 +1,7 @@
 class IntroRequestsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @requests = IntroRequest.all
+    @intro_requests = IntroRequest.all
   end
 end

@@ -1,0 +1,84 @@
+$sidebar-width: 250px
+$flash-height: 40px
+$default-body-font-size: 16px
+
+body
+  font-size: $default-body-font-size
+
+
+.flash-notices
+  height: 40px
+
+.flash-notice
+  height: 100%
+  padding-top: ($flash-height - $default-body-font-size) / 2
+  text-align: center
+  background: lightgreen
+
+.flash-alert
+  height: 100%
+  padding-top: ($flash-height - $default-body-font-size) / 2
+  text-align: center
+  background: yellow
+
+#wrapper
+  padding-left: $sidebar-width
+  transition: all 0.4s ease 0s
+
+#sidebar-wrapper
+  margin-left: -$sidebar-width
+  left: $sidebar-width
+  width: $sidebar-width
+  background: black
+  position: fixed
+  height: 100%
+  overflow-y: auto
+  z-index: 1000
+  transition: all 0.4s ease 0s
+
+#page-content-wrapper
+  width: 100%
+
+.sidebar-brand
+  height: 65px
+  margin-left: 20px
+  width: 100%
+  color: #ccc
+  font-size: 1.2em
+  line-height: 60px
+
+.sidebar-nav
+  color: #ccc
+  margin-left: 20px
+  margin: 0
+  font-size: 1.1em
+  margin-left: 25px
+  padding: 0
+  line-height: 35px
+  list-style: none
+  a
+    text-decoration: none
+    color: #ccc
+    &:hover
+      color: white
+
+.main
+  @extend .col-md-12
+
+
+@media (max-width:767px)
+
+  #wrapper
+    padding-left: 0
+
+  #sidebar-wrapper
+    left: 0
+
+  #wrapper.active
+    position: relative
+    left: 250px
+
+  #wrapper.active #sidebar-wrapper
+    left: 250px
+    width: 250px
+    transition: all 0.4s ease 0s
