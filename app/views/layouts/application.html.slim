@@ -12,7 +12,7 @@ html
           .sidebar-brand
             | Intros
           ul.sidebar-nav
-            =sidenav_items
+            = render partial: 'sidebar_nav_links'
         #page-content-wrapper
           = render partial: 'flashes'
           .container
