@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :contacts
+  resources :companies
   devise_for :users
   resources :intro_requests
 
