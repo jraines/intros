@@ -9,12 +9,16 @@ class ConnectionFilter extends React.Component{
   }
 
   render(){
-    return <input
-             type="text"
-             className="connection-search"
-             placeholder="Search for connections"
-             onKeyUp={this.props.filter}
-             onKeyDown={this.suppressTab} />;
+    return(
+      <div className="form-group" >
+        <input
+          type="text"
+          className="connection-search"
+          placeholder="Search for a person or company"
+          onKeyUp={this.props.filter}
+          onKeyDown={this.suppressTab} />
+      </div>
+    );
   }
 }
 
