@@ -8,4 +8,12 @@ RSpec.describe User, type: :model do
   it 'can have a contact added' do
     user.contacts << contact
   end
+
+  describe '#add_contact' do
+    it 'does not add duplicate contacts' do
+      user.add_contact(contact)
+      user.add_contact(contact)
+      expect(user.contacts.count).to eq 1
+    end
+  end
 end

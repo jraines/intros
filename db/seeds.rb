@@ -45,21 +45,21 @@ companies_data.each do |c|
       company = Company.find_by_name c[:name]
       contact = company.contacts.create! name: "#{first} #{last}",
         title: "Founder"
-      user.contacts << contact
+      user.add_contact(contact)
 
       20.times do
         company = non_yc_companies.sample
         unless user.companies.include? company
           if company.contacts.present?
             if rand > 0.7
-              user.contacts << contact
+              user.add_contact(contact)
             else
               contact = company.contacts.create name: Faker::Name.name
-              user.contacts << contact
+              user.add_contact(contact)
             end
           else
             contact = company.contacts.create name: Faker::Name.name
-            user.contacts << contact
+            user.add_contact(contact)
           end
         end
       end
