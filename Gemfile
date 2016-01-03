@@ -58,3 +58,12 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'rails_12factor', "0.0.3"
+
+  #application web server - see config/puma.rb and Procfile
+  gem 'puma'
+  gem 'pg', '~> 0.18.2'
+end
+
+

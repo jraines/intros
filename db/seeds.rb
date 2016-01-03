@@ -33,12 +33,12 @@ companies_data.each do |c|
     slugged_name = c[:name].downcase.gsub(/\s+/, "-")
 
     2.times do
-      founder_name = Faker::Name.name
-      first, last = founder_name.split(' ')
+      first = Faker::Name.first_name
+      last = Faker::Name.last_name
 
       user = User.create! first_name: first,
-        last_name: last,
-        email: "#{first}.#{last}@#{slugged_name}.com",
+                          last_name: last,
+                          email: "#{first}.#{last}@#{slugged_name}.com",
         password: '12121212',
         yc_class: c[:yc_class]
 
@@ -48,20 +48,26 @@ companies_data.each do |c|
       user.add_contact(contact)
 
       20.times do
+        first = Faker::Name.first_name
+        last = Faker::Name.last_name
+        name = first + ' ' + last
+        title = Faker::Name.title
         company = non_yc_companies.sample
+
         unless user.companies.include? company
           if company.contacts.present?
             if rand > 0.7
               user.add_contact(contact)
             else
-              contact = company.contacts.create name: Faker::Name.name
+              contact = company.contacts.create name: name, title: title
               user.add_contact(contact)
             end
           else
-            contact = company.contacts.create name: Faker::Name.name
+            contact = company.contacts.create name: name, title: title
             user.add_contact(contact)
           end
         end
+
       end
     end
 
@@ -76,9 +82,12 @@ end
 ######
     #
     # Was going to use real founders & company connections, but
-    # got blocked from crunchbase.  With more time, would get a license, but this requires an email to them to get a key and I didn't want to wait before making this first version
-    #
-    ######
+    # got blocked from crunchbase.  With more time, would get a license,
+    # but this requires an email to them to get a key and I didn't want
+    # to wait before making this first version
+######
+
+
     # page = HTTParty.get "https://www.crunchbase.com/organization/#{slugged_name}#/entity", opts
     # doc = Nokogiri::HTML(page)
     # founder_names = doc.css("#info-card-overview-content a.follow_card[data-type=person]").map &:inner_html
