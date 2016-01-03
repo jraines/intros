@@ -40,12 +40,7 @@ class ConnectionSuggestion extends React.Component{
     return (
       <div
         onClick={this.select}
-        style={
-          {
-            borderRight: "thin lightgray solid",
-            borderLeft: "thin lightgray solid"
-          }
-        }>
+        >
 
         <div className={highlighted} key={c.id}>
           <div
@@ -68,6 +63,9 @@ class ConnectionSuggestions extends React.Component {
         highlighted={this.props.highlighted}
         selectionFns={this.props.selectionFns} />
     );
+    if (!connections.length){
+      return null;
+    }
     return(
       <div
         className="connection-suggestions"
