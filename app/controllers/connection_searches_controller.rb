@@ -1,5 +1,9 @@
-class ConnectionsSearchController < ApplicationController
+class ConnectionSearchesController < ApplicationController
   skip_before_action :verify_authenticity_token
+
+  def new
+
+  end
 
   def search
     q = params[:q].downcase

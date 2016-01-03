@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   def add_contact(contact)
     contacts << contact unless contacts.include?(contact)
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

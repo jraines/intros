@@ -85,9 +85,16 @@ class ConnectionSuggestions extends React.Component {
 class Connector extends React.Component{
   render(){
     return(
-      <div>
-        {this.props.connector.first_name} {this.props.connector.last_name}, {this.props.connector.yc_class}
-      </div>
+      <tr>
+        <td>
+          <a href={`/users/${this.props.connector.id}`}>
+            {this.props.connector.first_name} {this.props.connector.last_name}
+          </a>
+        </td>
+        <td>
+          {this.props.connector.yc_class}
+        </td>
+      </tr>
     );
   }
 }
@@ -98,9 +105,12 @@ class Connectors extends React.Component{
       <Connector connector={c} key={i} />
     );
     return(
-      <div>
+      <table
+        className='table'
+        style={ { width: "50%" }}>
+
         {connectors}
-      </div>
+      </table>
     );
   }
 }
@@ -146,7 +156,7 @@ class ConnectionSearch extends React.Component{
   fetchConnections(term){
     if (term.length){
       var that = this;
-      $.getJSON('/connections_search/' + term, function(data){
+      $.getJSON('/connection_searches/' + term, function(data){
         that.setState({connections: data});
       });
     } else{

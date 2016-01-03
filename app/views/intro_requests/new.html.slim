@@ -1,3 +1,7 @@
-h1 Find a connection
-
-=react_component('ConnectionSearch')
+h1 New Intro Request
+=form_for IntroRequest.new do |f|
+  .form-group
+    =f.label :description
+    =f.text_area :description, class: 'form-control'
+  =f.hidden_field :user_id, value: current_user.id
+  =f.submit
