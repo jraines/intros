@@ -3,4 +3,6 @@
     = link_to intro_request.user.full_name, user_path(intro_request.user)
   .intro-request-small__description
     = intro_request.description
+  .intro-request-small__timestamp
+    = time_ago_in_words(intro_request.created_at) + " ago"
 hr

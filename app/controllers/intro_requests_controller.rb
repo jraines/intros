@@ -2,7 +2,7 @@ class IntroRequestsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @intro_requests = IntroRequest.all
+    @intro_requests = IntroRequest.desc.page(page)
   end
 
   def create
@@ -11,6 +11,10 @@ class IntroRequestsController < ApplicationController
   end
 
   private
+
+  def page
+    params[:page] || 0
+  end
 
   def intro_request_params
     params.require(:intro_request).permit(:description, :user_id)
