@@ -29,6 +29,7 @@ gem 'slim-rails', '~> 3.0.1'
 gem 'devise', '~> 3.5.3'
 gem 'httparty'
 gem 'nokogiri', '~> 1.6'
+gem 'react-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
