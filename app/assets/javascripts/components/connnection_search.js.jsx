@@ -125,6 +125,7 @@ class ConnectionSearch extends React.Component{
   }
 
   filter(e){
+    var term = e.target.value;
     switch(e.which) {
       case 9:
         this.moveSelection(e);
@@ -134,7 +135,9 @@ class ConnectionSearch extends React.Component{
         break;
       default:
         this.setState({highlighted: null});
-        this.fetchConnections(e.target.value);
+        if (term.length >= 2){
+          this.fetchConnections(e.target.value);
+        }
     }
   }
 
