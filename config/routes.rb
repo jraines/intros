@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   root 'intro_requests#index'
 
+  get '/connections_search/:q' => 'connections_search#search'
+  get '/connectors' => 'connectors#suggest'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -84,7 +84,7 @@ class Connector extends React.Component{
   render(){
     return(
       <div>
-        {this.props.connector.name}
+        {this.props.connector.first_name} {this.props.connector.last_name}, {this.props.connector.yc_class}
       </div>
     );
   }
@@ -92,7 +92,6 @@ class Connector extends React.Component{
 
 class Connectors extends React.Component{
   render(){
-    console.log('rendering connectors');
     var connectors = this.props.connectors.map((c, i) =>
       <Connector connector={c} key={i} />
     );
@@ -139,16 +138,29 @@ class ConnectionSearch extends React.Component{
     }
   }
 
+  fetchConnections(term){
+    if (term.length){
+      var that = this;
+      $.getJSON('/connections_search/' + term, function(data){
+        that.setState({connections: data});
+      });
+    } else{
+      this.setState({connections: []});
+    }
+  }
+
   makeSelection(connection){
     $('.connection-search').val('');
+    this.setState({connections: []});
     this.fetchConnectors(connection);
   }
 
   fetchConnectors(connection){
-    this.setState({
-      connectors: [{name: 'Bob'}, {name: 'David'}],
-      connections: [],
-      highlighted: null
+    var that = this;
+    $.getJSON(`/connectors?name=${connection.name}&type=${connection.type}`, function(data){
+      that.setState({
+        connectors: data
+      });
     });
   }
 
@@ -175,11 +187,14 @@ class ConnectionSearch extends React.Component{
     }
   }
 
-  fetchConnections(){
-    this.setState({connections: [{name: 'Jim'}, {name: 'Jane'}]});
-  }
 
   render(){
+    var connectorHeader;
+    if (this.state.connectors.length){
+      connectorHeader = <h2> Possible Connectors </h2>;
+    } else{
+      connectorHeader = null;
+    }
     return(
       <div
         style={
@@ -194,7 +209,7 @@ class ConnectionSearch extends React.Component{
           highlighted={ this.state.highlighted }
           selectionFns={ this.selectionFns }
         />
-        <h2> Possible Connectors </h2>
+        {connectorHeader}
         <Connectors
           connectors={ this.state.connectors }
         />
